@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 text-center">
+        <h1 class="display-4 mb-4">Congreso Anual de Ecología</h1>
+        <p class="lead mb-5">Sistema de Evaluación de Trabajos de Investigación (ETI)</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-cloud-upload" style="font-size: 48px;"></i>
+                        <h5 class="card-title mt-3">Enviar Trabajo</h5>
+                        <p class="card-text">Envía tu trabajo de investigación para ser evaluado</p>
+                        <a href="{{ url_for('enviar_trabajo') }}" class="btn btn-primary">Enviar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-search" style="font-size: 48px;"></i>
+                        <h5 class="card-title mt-3">Consultar Estado</h5>
+                        <p class="card-text">Consulta el estado de tu trabajo enviado</p>
+                        <a href="{{ url_for('consultar_trabajo') }}" class="btn btn-info">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow card-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-box-arrow-in-right" style="font-size: 48px;"></i>
+                        <h5 class="card-title mt-3">Área Evaluadores</h5>
+                        <p class="card-text">Acceso para evaluadores y organizadores</p>
+                        <a href="{{ url_for('login') }}" class="btn btn-success">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

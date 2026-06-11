@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Resultado de Asignación{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Proceso de Asignación Finalizado</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Resumen del proceso:</strong><br>
+                    Total de trabajos procesados: {{ resultados.total_trabajos }}<br>
+                    Trabajos con 3 evaluadores asignados: {{ resultados.trabajos_completados }}
+                </div>
+                
+                {% if resultados.errores %}
+                <div class="alert alert-warning">
+                    <strong>Trabajos con asignación incompleta:</strong>
+                    <ul>
+                    {% for error in resultados.errores %}
+                        <li>Trabajo #{{ error.trabajo_id }}: "{{ error.titulo }}" - Faltan {{ error.faltantes }} evaluadores</li>
+                    {% endfor %}
+                    </ul>
+                    <small>No hay suficientes evaluadores disponibles en esas áreas.</small>
+                </div>
+                {% else %}
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> ¡Todos los trabajos tienen sus 3 evaluadores asignados!
+                </div>
+                {% endif %}
+                
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('panel_organizador') }}" class="btn btn-primary">Volver al Panel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Enviar Trabajo{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 form-container">
+        <h2 class="text-center mb-4"><i class="bi bi-cloud-upload"></i> Enviar Trabajo de Investigación</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label class="form-label">Título del trabajo *</label>
+                    <input type="text" name="titulo" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label class="form-label">Resumen *</label>
+                    <textarea name="resumen" class="form-control" rows="5" required></textarea>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Área *</label>
+                    <select name="area" class="form-select" required>
+                        <option value="">Seleccione un área</option>
+                        {% for codigo, nombre in areas.items() %}
+                            <option value="{{ codigo }}">{{ nombre }} ({{ codigo }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Archivo del trabajo *</label>
+                    <input type="file" name="archivo" class="form-control" accept=".pdf,.doc,.docx,.txt" required>
+                    <small class="text-muted">Formatos permitidos: PDF, DOC, DOCX, TXT</small>
+                </div>
+            </div>
+            
+            <h5 class="mt-4 mb-3">Datos del autor principal</h5>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nombre *</label>
+                    <input type="text" name="autor_nombre" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Apellido *</label>
+                    <input type="text" name="autor_apellido" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label class="form-label">Correo electrónico *</label>
+                    <input type="email" name="autor_correo" class="form-control" required>
+                    <small class="text-muted">Se usará para consultar el estado del trabajo</small>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Enviar Trabajo</button>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

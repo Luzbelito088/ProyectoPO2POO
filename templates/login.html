@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 form-container">
+        <h2 class="text-center mb-4"><i class="bi bi-box-arrow-in-right"></i> Acceso al Sistema</h2>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" name="correo" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Rol</label>
+                <select name="rol" class="form-select" required>
+                    <option value="">Seleccione un rol</option>
+                    <option value="organizador">Organizador</option>
+                    <option value="evaluador">Evaluador</option>
+                </select>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Ingresar</button>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Volver</a>
+            </div>
+        </form>
+        
+        <hr>
+        <div class="text-center">
+            <small class="text-muted">
+                <strong>Datos de prueba:</strong><br>
+                Organizador: organizador@congreso.com / admin123
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

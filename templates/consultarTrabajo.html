@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Consultar Trabajo{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 form-container">
+        <h2 class="text-center mb-4"><i class="bi bi-search"></i> Consultar Estado del Trabajo</h2>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Número de trabajo (ID)</label>
+                <input type="number" name="id_trabajo" class="form-control" required>
+                <small class="text-muted">El número fue informado al enviar el trabajo</small>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico del autor</label>
+                <input type="email" name="correo" class="form-control" required>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</button>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
