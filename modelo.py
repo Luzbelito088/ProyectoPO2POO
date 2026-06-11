@@ -13,6 +13,21 @@ class Organizador(db.Model):
     correo = db.Column(db.String(120), unique=True, nullable=False)
     clave = db.Column(db.String(100), nullable=False)
 
+    def verificaClave(self, password):
+        return check_password_hash(self.clave, password)
+
+    def getId(self):
+        return self.id
+
+    def getNombre(self):
+        return self.nombre
+
+    def getApellido(self):
+        return self.apellido
+
+    def getCorreo(self):
+        return self.correo
+
 class Evaluador(db.Model):
     __tablename__ = 'evaluadores'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,6 +40,29 @@ class Evaluador(db.Model):
     clave = db.Column(db.String(100), nullable=False)        
     asignaciones = db.relationship('Asignacion', backref='evaluador', lazy=True)
 
+    def verificaClave(self, password):
+        return check_password_hash(self.clave, password)
+
+    def cantidadAsignaciones(self):
+        return len(self.asignaciones)
+
+    def getId(self):
+        return self.id
+
+    def getNombre(self):
+        return self.nombre
+
+    def getApellido(self):
+        return self.apellido
+
+    def getCorreo(self):
+        return self.correo
+
+    def getArea(self):
+        return self.area
+
+    def getMaxTrabajos(self):
+        return self.max_trabajos
 
 class Trabajo(db.Model):
     __tablename__ = 'trabajos'
@@ -40,6 +78,32 @@ class Trabajo(db.Model):
     archivo_nombre = db.Column(db.String(255), nullable=True)        
     asignaciones = db.relationship('Asignacion', backref='trabajo', lazy=True)
     
+    def estaPendiente(self):
+        return self.estado == "Pendiente"
+
+    def getId(self):
+        return self.id
+
+    def getTitulo(self):
+        return self.titulo
+
+    def getResumen(self):
+        return self.resumen
+
+    def getArea(self):
+        return self.area
+
+    def getEstado(self):
+        return self.estado
+
+    def getArchivo(self):
+        return self.archivo_nombre
+
+    def getAutorEmail(self):
+        return self.autor_email
+
+    def getFechaEnvio(self):
+        return self.fecha_envio.strftime("%d/%m/%Y")
 
 class Asignacion(db.Model):
     __tablename__ = 'asignaciones'
@@ -50,3 +114,11 @@ class Asignacion(db.Model):
     comentarios = db.Column(db.Text, nullable=True)
     fecha_evaluacion = db.Column(db.DateTime, nullable=True)
    
+    def fueEvaluado(self):
+        return self.valoracion != None
+
+    def getValoracion(self):
+        return self.valoracion
+
+    def getComentarios(self):
+        return self.comentarios
